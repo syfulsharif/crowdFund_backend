@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 connectDB().catch(err => console.error('Failed to connect to MongoDB:', err));
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://crowdfund-frontend.vercel.app'], // Add your Vercel frontend URL here
+  origin: ['http://localhost:5173', 'https://crowd-fund-client.vercel.app'],
   credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));
