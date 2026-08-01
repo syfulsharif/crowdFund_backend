@@ -11,10 +11,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Initialize DB Connection
-connectDB().catch(err => console.error('Failed to connect to MongoDB:', err));
+await connectDB().catch(err => console.error('Failed to connect to MongoDB:', err));
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://crowd-fund-client.vercel.app'],
+  origin: true,
   credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));

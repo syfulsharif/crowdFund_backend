@@ -29,6 +29,10 @@ export async function connectDB() {
       throw new Error('Using in-memory MongoDB fallback');
     }
   } catch (err) {
+    if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
+      console.error('Fatal: MONGODB_URI is required in production/Vercel. Cannot start in-memory fallback.');
+      throw new Error('Database connection failed in production.');
+    }
     console.log('Using in-memory MongoDB instance for instant sandbox startup...');
     mongoMemoryInstance = await MongoMemoryServer.create();
     mongoUri = mongoMemoryInstance.getUri();
